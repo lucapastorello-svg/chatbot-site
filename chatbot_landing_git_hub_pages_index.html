@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chatbot</title>
+    <meta name="description" content="Chatta con il nostro assistente." />
+    <style>
+      :root { --bg:#0b132b; --card:#ffffff; --text:#0b132b; --muted:#5c6b7a; }
+      html,body{height:100%}
+      body{margin:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0b132b 0%,#1c2541 100%);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji"}
+      .card{background:var(--card);color:var(--text);width:min(920px,92vw);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+      .hero{padding:48px 40px 28px}
+      .hero h1{margin:0 0 8px;font-size:clamp(28px,4vw,40px);letter-spacing:.2px}
+      .hero p{margin:0;color:var(--muted)}
+      .content{padding:0 40px 40px}
+      .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+      .btn{appearance:none;border:none;border-radius:14px;padding:14px 18px;font-weight:600;cursor:pointer}
+      .btn-primary{background:#1a73e8;color:#fff}
+      .btn-ghost{background:#eef2f7;color:#1a73e8}
+      .note{font-size:14px;color:var(--muted);margin-top:14px}
+      footer{padding:16px 24px;background:#f8fafc;color:#516175;font-size:13px;display:flex;justify-content:space-between;align-items:center}
+      a{color:#1a73e8;text-decoration:none}
+      .brand{display:flex;align-items:center;gap:10px}
+      .dot{width:10px;height:10px;background:#22c55e;border-radius:999px;display:inline-block}
+      @media (max-width:520px){.content{padding:0 20px 24px}.hero{padding:28px 20px 10px}}
+    </style>
+  </head>
+  <body>
+    <main class="card" role="main">
+      <section class="hero">
+        <div class="brand"><span class="dot" aria-hidden="true"></span><strong>Chatbot</strong></div>
+        <h1>Parla con il nostro assistente</h1>
+        <p>Fai domande, ottieni risposte e risolvi attività in pochi secondi.</p>
+      </section>
+      <section class="content">
+        <div class="actions">
+          <button class="btn btn-primary" onclick="window.botpressWebChat && window.botpressWebChat.sendEvent({ type: 'show' })">Apri chat</button>
+          <button class="btn btn-ghost" onclick="document.getElementById('embed-help').toggleAttribute('hidden')">Come funziona</button>
+        </div>
+        <p id="embed-help" class="note" hidden>
+          La chat si apre come "bolla" nell'angolo in basso a destra. Se non la vedi, verifica di aver incollato correttamente lo script Webchat di Botpress qui sotto.
+        </p>
+        <p class="note">Serve consenso cookie? Aggiungi qui il tuo banner/GDPR e carica l'informativa privacy.</p>
+        <noscript>
+          Abilita JavaScript per avviare la chat.
+        </noscript>
+      </section>
+      <footer>
+        <span>© <span id="y"></span> — Tutti i diritti riservati</span>
+        <a href="#" target="_blank" rel="noopener">Privacy</a>
+      </footer>
+    </main>
+
+    
+<!-- In your <head> tag -->
+<script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
+<style>
+  #webchat .bpWebchat {
+    position: unset;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  #webchat .bpFab {
+    display: none;
+  }
+</style>
+
+<!-- Put this on your page BEFORE the script below -->
+<div id="webchat" style="width: 500px; height: 500px;"></div>
+
+<!-- In your <body> tag -->
+<script>
+  window.botpress.on("webchat:ready", () => {
+    window.botpress.open();
+  });
+  window.botpress.init({
+  "botId": "ef2d0b86-29e7-4548-ab9f-5d973dc03a43",
+  "configuration": {
+    "version": "v1",
+    "composerPlaceholder": "Scrivi il tuo messaggio",
+    "botName": "Support clienti Ipag - Test",
+    "botDescription": "Posso rispondere a tutti i quesiti tecnici sulla difesa e nutrizione delle colture.",
+    "website": {
+      "title": "www.ipag.it",
+      "link": "www.ipag.it"
+    },
+    "email": {},
+    "phone": {},
+    "termsOfService": {},
+    "privacyPolicy": {},
+    "color": "#30a46c",
+    "variant": "solid",
+    "headerVariant": "solid",
+    "themeMode": "light",
+    "fontFamily": "fira",
+    "radius": 4,
+    "feedbackEnabled": true,
+    "footer": "[⚡ by Botpress](https://botpress.com/?from=webchat)",
+    "allowFileUpload": true,
+    "storageLocation": "localStorage"
+  },
+  "clientId": "1563c0c1-be09-4a32-946b-415c504425bc",
+  "selector": "#webchat"
+});
+</script>
+
+
+    <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+  </body>
+</html>
