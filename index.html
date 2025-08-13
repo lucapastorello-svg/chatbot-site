@@ -35,11 +35,11 @@
       </section>
       <section class="content">
         <div class="actions">
-          <button class="btn btn-primary" onclick="window.botpressWebChat && window.botpressWebChat.sendEvent({ type: 'show' })">Apri chat</button>
+          <button class="btn btn-primary" onclick="(function(){ const el=document.getElementById('webchat'); if (el) { el.scrollIntoView({behavior:'smooth'}); } if (window.botpress && window.botpress.open) { window.botpress.open(); } })()">Vai alla chat</button>
           <button class="btn btn-ghost" onclick="document.getElementById('embed-help').toggleAttribute('hidden')">Come funziona</button>
         </div>
         <p id="embed-help" class="note" hidden>
-          La chat si apre come "bolla" nell'angolo in basso a destra. Se non la vedi, verifica di aver incollato correttamente lo script Webchat di Botpress qui sotto.
+          La chat è <strong>integrata nella pagina</strong> qui sotto. Clicca “Vai alla chat” per scorrere alla sezione ed aprire l’interfaccia. Se non compare, verifica lo snippet Webchat v3 e gli Allowed origins in Botpress.
         </p>
         <p class="note">Serve consenso cookie? Aggiungi qui il tuo banner/GDPR e carica l'informativa privacy.</p>
         <noscript>
@@ -70,7 +70,7 @@
 </style>
 
 <!-- Put this on your page BEFORE the script below -->
-<div id="webchat" style="width: 500px; height: 500px;"></div>
+<div id="webchat" style="width: 100%; height: clamp(420px, 70vh, 780px);"></div>
 
 <!-- In your <body> tag -->
 <script>
@@ -86,7 +86,7 @@
     "botDescription": "Posso rispondere a tutti i quesiti tecnici sulla difesa e nutrizione delle colture.",
     "website": {
       "title": "www.ipag.it",
-      "link": "www.ipag.it"
+      "link": "https://www.ipag.it"
     },
     "email": {},
     "phone": {},
